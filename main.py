@@ -7,7 +7,6 @@ from utils import message_conversion
 def main():
     with open("operations.json", "r", encoding="utf-8") as file:
         data = json.load(file)
-
     data = sorted_operations_status(data)
     data = sorted_operation_date(data)
 

@@ -1,5 +1,6 @@
 def sorted_operations_status(data):
-    '''Сортировка операций по дате и статусу executed'''
+    '''Сортировка операций по статусу executed'''
+
     new_data = []
     for transaction in data:
         if transaction and transaction.get('state') == 'EXECUTED':
@@ -9,6 +10,8 @@ def sorted_operations_status(data):
 
 
 def sorted_operation_date(data):
+    '''Сортировка операций по дате'''
+
     data = sorted(data, key=lambda x: x['date'], reverse=True)
 
     return data[:5]
@@ -16,6 +19,7 @@ def sorted_operation_date(data):
 
 def message_conversion(item):
     '''Правка формата вывода сообщения'''
+
     date = get_date(item.get('date'))
     desc = item.get("description")
     from_ = masked(item.get("from"))
@@ -33,6 +37,7 @@ def message_conversion(item):
 
 def get_date(date):
     '''Формат времени'''
+
     date_raw = date[0:10].split(sep="-")
 
     return f"{date_raw[2]}.{date_raw[1]}.{date_raw[0]}"
@@ -40,6 +45,7 @@ def get_date(date):
 
 def masked(number):
     '''Вывод маскировки в сообщение'''
+
     if number is None:
         return ""
 
@@ -55,6 +61,7 @@ def masked(number):
 
 def mask_account(number: str):
     '''Маскировка номера счета'''
+
     if number.isdigit() and len(number) > 4:
         return f"**{number[-4:]}"
     else:
@@ -63,6 +70,7 @@ def mask_account(number: str):
 
 def mask_card_number(number: str):
     '''Маскировка номера карты'''
+
     if number.isdigit() and len(number) == 16:
         return f"{number[:4]} {number[4:6]}** **** {number[-4:]}"
     else:
