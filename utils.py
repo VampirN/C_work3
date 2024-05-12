@@ -1,9 +1,17 @@
-def sorted_operations(data):
+def sorted_operations_status(data):
     '''Сортировка операций по дате и статусу executed'''
-    items = [payment for payment in data if payment.get("state") == "EXECUTED"]
-    items.sort(key=lambda x: x.get("date"), reverse=True)
+    new_data = []
+    for transaction in data:
+        if transaction and transaction.get('state') == 'EXECUTED':
+            new_data.append(transaction)
 
-    return items
+    return new_data
+
+
+def sorted_operation_date(data):
+    data = sorted(data, key=lambda x: x['date'], reverse=True)
+
+    return data[:5]
 
 
 def message_conversion(item):
