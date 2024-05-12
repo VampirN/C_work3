@@ -41,21 +41,14 @@ def test_mask_card_number():
 
 
 def test_message_conversion():
-    assert message_conversion([{
-    "date": "2019-09-06T00:48:01.081967",
+    assert message_conversion(item = {
+    "date": "2018-06-24",
+    "from": "Maestro 7552745726849311",
+    "to": "Счет 34799481846914116850",
     "operationAmount": {
-      "amount": "6357.56",
-      "currency": {
-        "name": "USD",
-        "code": "USD"
-      }
-    },
-    "description": "Перевод организации",
-    "from": "Visa Gold 3654412434951162",
-    "to": "Счет 59986621134048778289"
-  }]) == "06.09.2019 Перевод организации "
-"Visa Gold 3654 41** **** 1162 -> Счет **8289)"
-"6357.56 USD"
+    "amount": 60030.73,
+    "currency": {
+    "name": "USD"}}}) == "24.06.2018 None\nMaestro 7552 74** **** 9311 -> Счет **6850\n60030.73 USD"
 
 
 
